@@ -19,6 +19,32 @@ struct TreeNode {
   TreeNode *right;
   TreeNode(int x) : val(x), left(NULL), right(NULL) {}
 };
+TreeNode *findBT(TreeNode *root, int val) {
+  TreeNode *ans;
+  if (root == nullptr)
+    return nullptr;
+  if (val < root->val)
+    ans = findBT(root->left, val);
+  else
+    ans = findBT(root->right, val);
+  if (ans == nullptr)
+    ans = root;
+  return ans;
+}
+TreeNode *createBinaryTree(vector<int> &arr) {
+  int len = arr.size();
+  if (len == 0)
+    return nullptr;
+  TreeNode *root = new TreeNode(arr[0]);
+  for (int i = 1; i < len; i++) {
+    TreeNode *insertP = findBT(root, arr[i]);
+    if (arr[i] < insertP->val)
+      insertP->left = new TreeNode(arr[i]);
+    else
+      insertP->right = new TreeNode(arr[i]);
+  }
+  return root;
+}
 
 TreeNode *createTree(vector<int> &arr) {
   TreeNode *head = nullptr;
@@ -58,7 +84,8 @@ int deleteTree(TreeNode *head) {
   delete head;
   return 0;
 }
-void display(vector < vector<int>> & arr) {
+// display matrix
+void display(vector<vector<int>> &arr) {
   for (auto row : arr) {
     for (auto num : row) {
       cout << num << " ";
