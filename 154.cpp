@@ -1,27 +1,42 @@
-#include<iostream>
-#include<map>
-#include<vector>
-#include<algorithm>
-#include<queue>
+#include <algorithm>
+#include <iostream>
+#include <map>
+#include <queue>
+#include <string>
+#include <vector>
+
 using std::cout;
 using std::endl;
 using std::max;
 using std::min;
+using std::string;
 using std::vector;
 class Solution {
 public:
-  // rotate array
-    int minArray(vector<int>& numbers) {
-      if (numbers.size() == 0)
-        return -1;
-        int ans = numbers[0];
-      for (auto v : numbers)
-        ans = min(ans, v);
-      return ans;
-        
+  int findMin(vector<int> &nums) {
+    int len = nums.size();
+    int left = 0, right = len - 1;
+    while (left < right) {
+      int m = left + (right - left) / 2;
+      if (nums[m] < nums[right]) {
+        right = m;
+      } else if(nums[m] > nums[right]) {
+        left = m + 1;
+      } else {
+        right--;
+      }
     }
+    return nums[left];
+  }
 };
 
 int main() {
-    Solution sol;
+  Solution sol;
+  vector<int> ex1 = {2, 3, 4, 4, 5, 0, 2};
+  cout << sol.findMin(ex1) << endl;
+  vector<int> ex2 = {0, 0, 0, 0, 2, 3, 4, 4, 5};
+  cout << sol.findMin(ex2) << endl;
+  vector<int> ex3 = {3,3,1,3};
+  cout << sol.findMin(ex3) << endl;
+  return 0;
 }
