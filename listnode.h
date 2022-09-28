@@ -1,5 +1,7 @@
 #include <iostream>
+#include <string_view>
 #include <vector>
+
 struct ListNode {
   int val;
   ListNode *next;
@@ -8,7 +10,7 @@ struct ListNode {
 using std::cout;
 using std::endl;
 using std::vector;
-ListNode * createList(vector<int> &list) {
+ListNode *createList(vector<int> &list) {
   ListNode *head = new ListNode(0);
   ListNode *p = head;
   for (auto x : list) {
@@ -36,10 +38,20 @@ void display(ListNode *head) {
   cout << endl;
 }
 // print vector
-void printV(vector<int> mat) {
-  cout << "mat: ";
+void printV(vector<int> mat, const char * str) {
+  cout << str << " -- [";
   for (auto v : mat) {
     cout << v << " ";
   }
-  cout << endl;
+  cout << "\b]"<< endl;
+}
+
+void printl(vector<vector<int>> &mat) {
+  int m = mat.size(), n = mat[0].size();
+  for (int i = 0; i < m; i++) {
+    for (int j = 0; j < n; j++) {
+      cout << mat[i][j] << "\t";
+    }
+    cout << endl;
+  }
 }
