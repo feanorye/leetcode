@@ -23,11 +23,25 @@ using std::vector;
 
 class Solution {
 public:
-}
+  int scoreOfParentheses(string s) {
+    stack<int> st;
+    //final result would be st[0]
+    st.push(0);
+    for (auto c : s) {
+      if (c == '(') {
+        st.push(0);
+      } else {
+        int v = st.top();
+        st.pop();
+        st.top() += max(2*v,1);
+      }
+    }
+    return st.top();
+  }
 };
 
 int main() {
   Solution sol;
-  vector<vector<char>> ex1;
+  printInt("ans: 5 -- ", sol.scoreOfParentheses("(()())()"));
   return 0;
 }

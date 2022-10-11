@@ -1,29 +1,26 @@
-#include "listnode.h"
 #include <algorithm>
 #include <iostream>
 #include <map>
 #include <queue>
-#include <set>
-#include <stack>
 #include <string>
-#include <unordered_map>
-#include <utility>
 #include <vector>
+#include <utility>
+
 
 using std::cout;
 using std::endl;
-using std::map;
 using std::max;
 using std::min;
 using std::pair;
-using std::queue;
-using std::stack;
 using std::string;
 using std::vector;
-
+using std::queue;
 class Solution {
 public:
-}
+    bool isFlipedString(string s1, string s2) {
+      return s1.size() == s2.size() && (s1 + s1).find(s2) != string::npos;
+
+    }
 };
 
 int main() {

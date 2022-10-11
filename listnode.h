@@ -1,4 +1,5 @@
 #include <iostream>
+#include <string>
 #include <string_view>
 #include <vector>
 
@@ -38,20 +39,30 @@ void display(ListNode *head) {
   cout << endl;
 }
 // print vector
-void printV(vector<int> mat, const char * str) {
-  cout << str << " -- [";
+template<typename Elem>
+void printV(vector<Elem> mat, const char *str) {
+  cout << str << " [ ";
   for (auto v : mat) {
-    cout << v << " ";
+    cout << v << ",";
   }
-  cout << "\b]"<< endl;
+  cout << "\b ]" << endl;
 }
 
 void printl(vector<vector<int>> &mat) {
   int m = mat.size(), n = mat[0].size();
+  cout << endl << "matrix: " << m << " * " << n << endl;
   for (int i = 0; i < m; i++) {
     for (int j = 0; j < n; j++) {
       cout << mat[i][j] << "\t";
     }
     cout << endl;
   }
+}
+
+void printInt(const char *str, int num) { cout << str << num << endl; }
+void printStrA(vector<std::string> &mat) {
+  cout << '[';
+  for (auto str : mat)
+    cout << str << ",";
+  cout << "\b]\n";
 }

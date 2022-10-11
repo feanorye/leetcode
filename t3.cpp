@@ -26,5 +26,6 @@ int main() {
     slow = (slow + 1) % 9;
     cout << slow << " " << fast << endl;
   }
+  cout << "e4: " << 10e4 << endl;
   return 0;
 }

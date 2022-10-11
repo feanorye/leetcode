@@ -17,4 +17,7 @@ int main() {
     cout << i << " %5: " << (i % 5) << endl;
   vector<int> arr = {0, 1, 2, 3};
   cout << "arr[-1] " << arr[-1] << endl;
+  for (int i = 0; i < 20; i += 3) {
+    cout << i << " ^ 1 = " << (i ^ 1) << endl; 
+  }
 }
