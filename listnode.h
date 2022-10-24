@@ -48,8 +48,11 @@ void printV(vector<Elem> mat, const char *str) {
   cout << "\b ]" << endl;
 }
 
-void printl(vector<vector<int>> &mat) {
-  int m = mat.size(), n = mat[0].size();
+void printl(vector<vector<int>> mat) {
+  int m = mat.size();
+  if (m == 0)
+    cout << "[[]]\n";
+  int n = mat[0].size();
   cout << endl << "matrix: " << m << " * " << n << endl;
   for (int i = 0; i < m; i++) {
     for (int j = 0; j < n; j++) {
@@ -60,7 +63,7 @@ void printl(vector<vector<int>> &mat) {
 }
 
 void printInt(const char *str, int num) { cout << str << num << endl; }
-void printStrA(vector<std::string> &mat) {
+void printStrA(vector<std::string> &&mat) {
   cout << '[';
   for (auto str : mat)
     cout << str << ",";
