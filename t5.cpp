@@ -3,8 +3,22 @@
 #include <iostream>
 #include <vector>
 
+using std::cout;
+using std::endl;
+using std::vector;
+
+void count_n(int ind) {
+  static vector<int> str = {1, 2, 3};
+  str.push_back(ind);
+  cout << ind << ": " << str.size() << endl;
+}
+
 int main() {
   using namespace std;
+  for (auto i : {1, 2, 3, 4}) {
+    count_n(i);
+  }
+  return 0;
   string s1 = "123";
   string s2 = "4";
   std::cout << (s1 < s2) << std::endl;

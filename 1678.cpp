@@ -9,7 +9,6 @@
 #include <unordered_map>
 #include <utility>
 #include <vector>
-#include <tuple>
 
 using std::cout;
 using std::endl;
@@ -21,13 +20,26 @@ using std::queue;
 using std::stack;
 using std::string;
 using std::vector;
-using std::stringstream;
-using std::tuple;
-using std::greater;
 
 class Solution {
 public:
-}
+  string interpret(string command) {
+    string ans;
+    for (int i = 0; i < command.size(); i++) {
+      if (command[i] == '(')
+        continue;
+      if (command[i] == ')') {
+        if (command[i - 1] == '(')
+          ans += 'o';
+        else
+          continue;
+      } else {
+        ans += command[i];
+      }
+
+    }
+    return ans;
+  }
 };
 
 int main() {

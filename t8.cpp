@@ -9,7 +9,7 @@
 #include <unordered_map>
 #include <utility>
 #include <vector>
-#include <tuple>
+#include <sstream>
 
 using std::cout;
 using std::endl;
@@ -22,16 +22,27 @@ using std::stack;
 using std::string;
 using std::vector;
 using std::stringstream;
-using std::tuple;
-using std::greater;
 
 class Solution {
 public:
-}
+  vector<string> test() {
+    string str = "zhang hui tao ", elem;
+    stringstream s(str);
+    vector<string> res;
+    while (s >> ( elem)) {
+      res.emplace_back(elem);
+    }
+    return res;
+  }
 };
 
 int main() {
   Solution sol;
-  vector<vector<char>> ex1;
+  sol.test();
+  map<string, char> hash;
+  hash.count("zhang");
+  vector<vector<int>> ans;
+  ans.emplace_back(vector<int>{1, 2});
+  printl(ans);
   return 0;
 }

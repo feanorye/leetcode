@@ -1,3 +1,4 @@
+#include "listnode.h"
 #include <algorithm>
 #include <iostream>
 #include <map>
@@ -5,17 +6,17 @@
 #include <string>
 #include <utility>
 #include <vector>
-#include "listnode.h"
+
 
 using std::cout;
 using std::endl;
+using std::map;
 using std::max;
 using std::min;
 using std::pair;
 using std::queue;
 using std::string;
 using std::vector;
-using std::map;
 class Solution {
   vector<int> left;
 
@@ -36,28 +37,15 @@ public:
 
 int main() {
   Solution sol;
-  sol.exist();
-  sol.print();
-  int n = 10;
-  while (n--)
-    cout << "n & 1 = " << (n & 1) << endl;
-  string a = "23";
-  cout << "23 < 24 = " << (a < "24") << endl;
-  string test = "1234 www.leetcode.com";
-  vector<string> arr;
-  arr.emplace_back(test.substr(0, 4));
-  arr.emplace_back(test.substr(5));
-  printStrA(arr);
-  int it = 0;
-  int i = 0;
-  while (true) {
-    it = test.find('.',it+1);
-    cout << it << "test: " << test.substr(it+1) << endl;
-    if (i++ > 5)
-      break;
+  using std::priority_queue;
+  priority_queue<int> q;
+  for (auto k : {12, 5, 3, 21, 7, 8, 6}) {
+    q.push(k);
   }
-  map<int, vector<int>> mem;
-  mem[12].emplace_back(123);
-  cout << mem[12][0] << endl;
+  int n = q.size();
+  for (int i = 0; i < n; i++) {
+    cout << q.top() << endl;
+    q.pop();
+  }
   return 0;
 }
