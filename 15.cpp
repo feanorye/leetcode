@@ -37,6 +37,8 @@ public:
         int target = -nums[i] - nums[j];
         while (j < k && nums[k] > target)
           k--;
+        // 跳出循环可能：1. k <= j
+        //              2. nums[k] <= target
         if (j < k && nums[k] == target) {
           vector<int> tmp = {nums[i], nums[j], target};
           ans.emplace_back(tmp);

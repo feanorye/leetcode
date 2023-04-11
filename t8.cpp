@@ -24,25 +24,29 @@ using std::vector;
 using std::stringstream;
 
 class Solution {
+  int _number;
 public:
-  vector<string> test() {
-    string str = "zhang hui tao ", elem;
-    stringstream s(str);
-    vector<string> res;
-    while (s >> ( elem)) {
-      res.emplace_back(elem);
-    }
-    return res;
+  Solution(int n) : _number(n) { cout << "Create: " << _number << endl; }
+  ~Solution() { cout << "destroy: " << _number << endl; }
+  void change(int n) {
+    _number = n;
   }
 };
 
 int main() {
-  Solution sol;
-  sol.test();
-  map<string, char> hash;
-  hash.count("zhang");
-  vector<vector<int>> ans;
-  ans.emplace_back(vector<int>{1, 2});
-  printl(ans);
+  Solution sol(1);
+  Solution sol2(2);
+  cout << "Before move\n";
+  sol = std::move(sol2);
+  cout << "After move\n";
+  sol.change(12);
+  cout << "After change\n";
+  vector<int> ex1 = {2, 4, 6, 8};
+  auto is_even = [](int i) { return i % 2 == 0; };
+  std::partition(ex1.begin(), ex1.end(), is_even);
+  printV(ex1, "mat: ");
+  auto pp = std::partition_point(ex1.begin(), ex1.end(), is_even);
+  cout << "final: " << *pp << endl;
+  
   return 0;
 }

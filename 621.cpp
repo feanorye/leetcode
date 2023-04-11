@@ -27,7 +27,25 @@ using std::vector;
 
 class Solution {
 public:
-}
+  int leastInterval(vector<char> &tasks, int n) {
+    int ans = 0;
+    map<char, int> hash;
+    for (auto c : tasks) {
+      hash[c]++;
+    }
+    int cnt = 0, maxv = 0;
+    for (auto [k, v] : hash) {
+      if (maxv < v) {
+        cnt = 1;
+        maxv = v;
+        continue;
+      }
+      if (maxv == v) {
+        cnt++;
+      }
+    }
+    return std::max((n+1)*(maxv-1)+cnt, (int)tasks.size());
+  }
 };
 
 int main() {

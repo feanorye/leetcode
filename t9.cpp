@@ -1,6 +1,7 @@
 #include "listnode.h"
 #include <algorithm>
 #include <iostream>
+#include <iterator>
 #include <map>
 #include <queue>
 #include <set>
@@ -18,6 +19,8 @@ using std::map;
 using std::max;
 using std::min;
 using std::pair;
+using std::partition_point;
+using std::prev;
 using std::queue;
 using std::stack;
 using std::string;
@@ -25,12 +28,10 @@ using std::stringstream;
 using std::tuple;
 using std::vector;
 
-class Solution {
-public:
-}
-};
-
 int main() {
-  Solution sol;
+  vector<int> ex = {1, 2, 3, 4};
+  cout << "prev 4: "
+       << *(prev(partition_point(ex.begin(), ex.end(),
+                                 [](const int e) { return e <= 4; })));
   return 0;
 }

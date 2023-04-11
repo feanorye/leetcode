@@ -1,5 +1,6 @@
 #include "listnode.h"
 #include <algorithm>
+#include <functional>
 #include <iostream>
 #include <map>
 #include <queue>
@@ -27,7 +28,18 @@ using std::vector;
 
 class Solution {
 public:
-}
+  int maxScore(vector<int> &nums) {
+    sort(nums.begin(), nums.end(), std::greater<int>());
+    auto n = nums.size();
+    vector<int> prefix(n + 1, 0);
+    for (int i = 0; i < n; i++) {
+      // prefix[i] == sum[:i]
+      prefix[i + 1] = prefix[i] + nums[i];
+      if (prefix[i + 1] < 0)
+        return i;
+    }
+    return n;
+  }
 };
 
 int main() {

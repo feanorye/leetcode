@@ -1,56 +1,40 @@
-#include<iostream>
-#include<map>
-#include<vector>
-#include<stack>
-#include<string>
+#include <algorithm>
+#include <functional>
+#include <iostream>
+#include <iterator>
+#include <map>
+#include <stack>
+#include <string>
+#include <vector>
+
 using std::cout;
 using std::endl;
+using std::lower_bound;
+using std::upper_bound;
 using std::vector;
-void
-print(vector<vector<int>> & mat){
-	for(auto k1 : mat){
-		for(auto k2 : k1)
-			cout << k2 << " ";
-		cout << endl;
-	}
-	cout << endl;
+void print(vector<vector<int>> &mat) {
+  for (auto k1 : mat) {
+    for (auto k2 : k1)
+      cout << k2 << " ";
+    cout << endl;
+  }
+  cout << endl;
 }
-int main()
-{
-	using namespace std;
-	vector<vector<int>> max;
-	max.resize(2, vector<int>(3, 0));
-	print(max);
-
-	vector<vector<int>> ss(9, vector<int>(9, 12));
-	print(ss);
-	string s;
-	cout << s + "222" << endl;
-	s += "zhang123";
-	for(auto k : s){
-		cout << k << " ";
-		//string c = k;
-		//cout << c << "||" << endl;
-		//cout << char('0' + 9) + "tmp";
+int main() {
+  using namespace std;
+  vector<int> arr = {2, 12, 4, 5};
+  sort(arr.begin(), arr.end(), std::greater<int>());
+  auto git = upper_bound(arr.begin(), arr.end(), 4);
+  auto git2 = upper_bound(arr.begin(), arr.end(), 12);
+  auto git3 = lower_bound(arr.begin(), arr.end(), 12);
+  auto git4 = lower_bound(arr.begin(), arr.end(), 2);
+  vector<int> dis(4, 100);
+  dis[0] = std::distance(git, arr.begin());
+  dis[1] = std::distance(git2, arr.begin());
+  dis[2] = std::distance(git3, arr.begin());
+  dis[3] = std::distance(git4, arr.begin());
+  for (auto d : dis) {
+    cout << d << endl;
 	}
-	cout << endl;
-	string c = "0";
-	c[0] += 9;
-	string s2 = c + "tmp";
-	char cc = 'g';
-	s2 += cc;
-	cout << s2 << endl;
-	// test vector ==
-	vector<int> t1 = {1, 2, 3};
-	vector<int> t2 = {1, 2, 3};
-	cout << "test vector" << (t1 == t2) << endl;
-	// test reverse ==
-	s = to_string(1996);
-	std::reverse(s.begin(), s.end());
-	cout << s << endl;
-	string s3;
-	s3 += 'w';
-	s3 += 'c';
-	cout << s3 << endl;
-	return 0;
-}	
+  return 0;
+}
