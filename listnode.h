@@ -1,6 +1,7 @@
 #include <corecrt.h>
 #include <iostream>
 #include <queue>
+#include <stdint.h>
 #include <string>
 #include <string_view>
 #include <vector>
@@ -73,6 +74,11 @@ void printStrA(vector<std::string> &&mat) {
     cout << str << ",";
   cout << "\b]\n";
 }
+void printStrA2(vector<vector<std::string>> &&mat) {
+  for (auto row : mat)
+    for (std::string str : row)
+      cout << str << ",";
+}
 
 struct TreeNode {
   int val;
@@ -83,10 +89,10 @@ struct TreeNode {
   TreeNode(int x, TreeNode *left, TreeNode *right)
       : val(x), left(left), right(right) {}
 };
-// use -1 represent NULL
-TreeNode *Create_tree(vector<int> &data) {
+// use INT32_MIN represent NULL
+[[nodiscard]] TreeNode *Create_tree(vector<int> &data) {
   auto n = data.size();
-  if (n == 0 || data[0] == -1)
+  if (n == 0 || data[0] == INT32_MIN)
     return nullptr;
   TreeNode *root = new TreeNode(data[0]);
   queue<TreeNode *> q;
@@ -96,14 +102,14 @@ TreeNode *Create_tree(vector<int> &data) {
     q.pop();
     TreeNode *lchild = nullptr, *rchild = nullptr;
 
-    if (data[i] != -1) {
+    if (data[i] != INT32_MIN) {
       lchild = new TreeNode(data[i]);
       q.push(lchild);
     }
     p->left = lchild;
     if (++i >= n)
       break;
-    if (i < n && data[i] != -1) {
+    if (i < n && data[i] != INT32_MIN) {
       rchild = new TreeNode(data[i]);
       q.push(rchild);
     }
@@ -111,10 +117,34 @@ TreeNode *Create_tree(vector<int> &data) {
   }
   return root;
 }
-
-/* void print_tree(TreeNode *root) {
+TreeNode *find(TreeNode *root, int val) {
+  if (root->left != nullptr) {
+    TreeNode *lans = find(root->left, val);
+    if (lans != nullptr) {
+      return lans;
+    }
+  }
+  if (root->val == val) {
+    return root;
+  }
+  if (root->right != nullptr) {
+    TreeNode *rans = find(root->right, val);
+    if (rans != nullptr) {
+      return rans;
+    }
+  }
+  return nullptr;
+}
+void pre_tree(TreeNode *root) {
   if (root == nullptr) {
     cout << "NULL ";
     return;
   }
-} */
+  cout << root->val << "->";
+  if (root->left) {
+    pre_tree(root->left);
+  }
+  if (root->right) {
+    pre_tree(root->right);
+  }
+}

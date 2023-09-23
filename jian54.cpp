@@ -16,6 +16,7 @@ class Solution {
 public:
   int kthLargest(TreeNode *root, int k) { return dfs(root, k); }
   int dfs(TreeNode *root, int &k) {
+    // 右-中-左遍历
     int ans;
     if (root == nullptr)
       return -1;

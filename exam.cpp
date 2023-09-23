@@ -26,6 +26,7 @@ using std::tuple;
 using std::vector;
 
 class Solution {
+  using PII = pair<int, int>;
 public:
 }
 };

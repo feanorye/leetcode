@@ -23,6 +23,10 @@ using std::vector;
 
 class Solution {
 public:
+/*
+ * @param s string of to used
+ * @param[out] numRows length of row
+ * */
   string convert(string s, int numRows) {
     vector<string> ans(numRows);
     int ind = 0, n = s.size();

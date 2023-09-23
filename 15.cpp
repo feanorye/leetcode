@@ -23,6 +23,7 @@ using std::vector;
 
 class Solution {
 public:
+  /*  三数之和为0，返回不重复的三元组 */
   vector<vector<int>> threeSum(vector<int> &nums) {
     vector<vector<int>> ans;
     sort(nums.begin(), nums.end());
@@ -37,18 +38,19 @@ public:
         int target = -nums[i] - nums[j];
         while (j < k && nums[k] > target)
           k--;
-        // 跳出循环可能：1. k <= j
+        // 跳出循环可能：1. j >= k
         //              2. nums[k] <= target
         if (j < k && nums[k] == target) {
           vector<int> tmp = {nums[i], nums[j], target};
           ans.emplace_back(tmp);
         }
+        // 跳过重复的第二元素,循环结束j++,条件j < n - 1
         while (j < n - 2 && nums[j + 1] == nums[j])
           j++;
       }
+      // 循环结束i++, 循环条件i < n - 2
       while (i < n - 3 && nums[i + 1] == nums[i])
         i++;
-      
     }
     return ans;
   }

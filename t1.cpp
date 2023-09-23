@@ -1,7 +1,9 @@
 #include <algorithm>
+#include <cstring>
 #include <functional>
 #include <iostream>
 #include <iterator>
+#include <list>
 #include <map>
 #include <stack>
 #include <string>
@@ -20,21 +22,33 @@ void print(vector<vector<int>> &mat) {
   }
   cout << endl;
 }
+auto f(int len) -> int {
+  int arr[len];
+  std::memset(arr, len, sizeof(arr));
+  for (int v : arr) {
+    cout << v << " ";
+  }
+  cout << endl;
+  return 1;
+}
+class ss {
+private:
+  static int s;
+  int normal;
+  std::string name;
+
+public:
+  ss(std::string n) : normal(11), name(n) {}
+  void print() {
+    std::cout << name << " ->static: " << s << " normal:" << normal << endl;
+    s++;
+  }
+  void inits() { s = 11; }
+};
 int main() {
-  using namespace std;
-  vector<int> arr = {2, 12, 4, 5};
-  sort(arr.begin(), arr.end(), std::greater<int>());
-  auto git = upper_bound(arr.begin(), arr.end(), 4);
-  auto git2 = upper_bound(arr.begin(), arr.end(), 12);
-  auto git3 = lower_bound(arr.begin(), arr.end(), 12);
-  auto git4 = lower_bound(arr.begin(), arr.end(), 2);
-  vector<int> dis(4, 100);
-  dis[0] = std::distance(git, arr.begin());
-  dis[1] = std::distance(git2, arr.begin());
-  dis[2] = std::distance(git3, arr.begin());
-  dis[3] = std::distance(git4, arr.begin());
-  for (auto d : dis) {
-    cout << d << endl;
-	}
+  int k = 15;
+  int i = 12;
+  k -= i + 3;
+  cout << k << endl;
   return 0;
 }

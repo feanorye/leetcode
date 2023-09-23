@@ -11,34 +11,33 @@ void maxSubArraySum(vector<int> a, int size, int x) {
 
   for (int i = 1; i < size; i++) {
     curr_max = max(a[i], curr_max + a[i]);
+    if (curr_max == a[i]) {
+      s = i;
+    }
     if (max_so_far < curr_max) {
       max_so_far = curr_max;
       start = s;
       end = i;
     }
-    if (curr_max < 0) {
-      curr_max = 0;
-      s = i + 1;
-    }
   }
 
   int min_num = a[start];
-  // cout << "sum: " << max_so_far << " {";
+  cout << "sum: " << max_so_far << " " << start << "->" << end << " {";
   for (int i = start; i <= end; i++) {
     min_num = min(a[i], min_num);
-    // cout << a[i] << ",";
+    cout << a[i] << ",";
   }
-  // cout << "}"<< endl;
+  cout << "}" << endl;
 
   if (start > 0 || end < size - 1) {
-    cout << max_so_far + x << endl;
+    cout << "change: " << max_so_far + x << endl;
   } else {
-    cout << curr_max + max(0, min_num - x) << endl;
+    cout << "change: " << max_so_far + max(0, x - min_num) << endl;
   }
 }
 int main() {
   vector<int> ex5{-5, -3};
-  maxSubArraySum(ex5, ex5.size(), -3);
+  maxSubArraySum(ex5, ex5.size(), 10);
   vector<int> ex4{-5, -2, -1, -6, -3};
   maxSubArraySum(ex4, ex4.size(), 0);
   vector<int> ex3{5, -1, -5, -3, 2};

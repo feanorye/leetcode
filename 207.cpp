@@ -28,9 +28,11 @@ using std::vector;
 class Solution {
 public:
   // 完成numCourses门课，每门课有前置课程，分析是否能够完成->依赖关系分析
+  // prerequisites {cur, pre}: cur NEED pre
   bool canFinish(int numCourses, vector<vector<int>> &prerequisites) {
-    vector<vector<int>> adj(numCourses, vector<int>());
-    vector<int> ingress(numCourses, 0); //记录依赖数量
+    vector<vector<int>> adj(numCourses, vector<int>()); // 邻接表记录作为图
+    vector<int> ingress(numCourses, 0);                 // 记录依赖数量
+    // 转换方向，将其转为pre -> cur图
     for (auto arr : prerequisites) {
       int cur = arr[0], pre = arr[1];
       adj[pre].push_back(cur);
@@ -43,7 +45,7 @@ public:
         start.push(cur);
     }
     // BFS
-    while ( !start.empty()) {
+    while (!start.empty()) {
       int pre = start.front();
       start.pop();
       numCourses--;
@@ -54,7 +56,6 @@ public:
         }
       }
     }
-    // todo: 为什么？
     return numCourses == 0;
   }
 };

@@ -27,7 +27,8 @@ using std::vector;
 
 class Solution {
 public:
-    int traverse(TreeNode *root, int &level, int k){
+  int traverse(TreeNode *root, int &level, int k) {
+    // 中序遍历
         int ans;
         if(root->left){
             ans = traverse(root->left, level, k);

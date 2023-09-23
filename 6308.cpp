@@ -26,20 +26,6 @@ using std::tuple;
 using std::vector;
 using std::priority_queue;
 
-/*
- * Definition for a binary tree node.
-*/
- struct TreeNode {
-     int val;
-     TreeNode *left;
-     TreeNode *right;
-     TreeNode() : val(0), left(nullptr), right(nullptr) {}
-     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
-     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
- };
-
-
-
 class Solution {
 public:
   // todo: 溢出

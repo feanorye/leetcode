@@ -25,7 +25,7 @@ using std::string;
 using std::stringstream;
 using std::tuple;
 using std::vector;
-
+// 并查集：同一变量的多个引用、朋友圈
 class UnionF {
 private:
   map<int, int> parent;
@@ -38,9 +38,13 @@ public:
       count[i] = 1;
     }
   }
+  /*
+  ** 返回x的parent
+  */
   int find(int x) {
     if (parent.count(x) < 1)
       return INT32_MIN;
+  // 路径压缩
     if (parent[x] != x)
       parent[x] = find(parent[x]);
     return parent[x];
@@ -83,12 +87,14 @@ public:
     return ans;
   }
   int longestConsecutive2(vector<int> &nums) {
+    // map做法
     std::unordered_map<int, int> hash;
     for (int e : nums) {
       hash[e] = e;
     }
     int ans = 0;
     for (int i = nums.size() - 1; i >= 0; i--) {
+      // 找到左边界
       if (!hash.count(nums[i] - 1)) {
         int right = hash[nums[i]];
         while (hash.count(right + 1))

@@ -33,12 +33,11 @@ struct name {
   string name;
 };
 int main() {
-  vector<int> ex = {1, 2, 3, 4};
-  cout << "prev 4: "
-       << *(prev(partition_point(ex.begin(), ex.end(),
-                                 [](const int e) { return e <= 4; })));
-  name z = {12, "zhang"};
-  auto [id, n] = z;
-  cout << "id: " << id << " name: " << n << endl;
+  int m = 0;
+  auto check = [&m]() { cout << "now: " << m << endl; };
+  for (int i = 0; i < 4; i++) {
+    m++;
+    check();
+  }
   return 0;
-}
+} 

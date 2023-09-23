@@ -29,6 +29,9 @@ public:
     }
     return nums[low];
   }
+/*
+ * @param: nums operate element.
+ * */
   int singleNonDuplicate2(vector<int> &nums) {
     int n = nums.size();
     int l = 0, r = n - 1;

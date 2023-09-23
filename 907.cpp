@@ -23,6 +23,12 @@ using std::vector;
 
 class Solution {
 public:
+  // 子数组最小值之和: 类似992，贡献法 + 单调栈
+  // [3,1,2,4]
+  // 3: [3], 1:[1], [3,1],[1,2],[3,1,2],[1,2,4],[3,1,2,4]
+  // 2:[2],[2,4] 4:[4]
+  // 任意元素对应的子数组数量：left = 小于nums[i]的最近序号， right= 右侧小于等于nums[i]的最近序号
+  // 数量 = (i - left) * (right - i)
   // v2: optimize of 3
   int sumSubarrayMins(vector<int> &arr) {
     const int mod = 1e9 + 7;

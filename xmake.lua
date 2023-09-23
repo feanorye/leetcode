@@ -1,5 +1,13 @@
 add_cxxflags("-target x86_64-pc-windows-gnu")
 add_ldflags("-target x86_64-pc-windows-gnu")
+add_rules("mode.release", "mode.debug")
+set_languages("c11", "c++17")
+
+target("heap_test")
+    set_kind("binary")
+    add_includedirs("include/")
+    add_files("test/heap_sort_test.cpp")
+
 target("09")
     set_kind("binary")
     add_files("09.cpp")
